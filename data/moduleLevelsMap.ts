@@ -1,0 +1,25 @@
+// data/moduleLevelsMap.ts
+
+export const moduleLevelsMap: Record<string, string[]> = {
+  air_filtering_unit: ["air_filtering_unit_1"],
+  bitcoin_farm: ["bitcoin_farm_1", "bitcoin_farm_2"],
+  booze_generator: ["booze_generator_1"],
+  generator: ["generator_1", "generator_2", "generator_3"],
+  gym: ["gym_1"],
+  heating: ["heating_1", "heating_2", "heating_3"],
+  illumination: ["illumination_1", "illumination_2", "illumination_3"],
+  intelligence_center: ["intelligence_center_1", "intelligence_center_2", "intelligence_center_3"],
+  lavatory: ["lavatory_1", "lavatory_2", "lavatory_3"],
+  library: ["library_1"],
+  medstation: ["medstation_1", "medstation_2", "medstation_3"],
+  nutrition_unit: ["nutrition_unit_1", "nutrition_unit_2", "nutrition_unit_3"],
+  rest_space: ["rest_space_1", "rest_space_2", "rest_space_3"],
+  scav_case: ["scav_case_1"],
+  security: ["security_1", "security_2", "security_3"],
+  shooting_range: ["shooting_range_1"],
+  solar_power: ["solar_power_1"],
+  stash: ["stash_1", "stash_2", "stash_3"],
+  vents: ["vents_1", "vents_2", "vents_3"],
+  water_collector: ["water_collector_1", "water_collector_2", "water_collector_3"],
+  workbench: ["workbench_1", "workbench_2", "workbench_3"],
+};
