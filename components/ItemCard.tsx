@@ -86,7 +86,9 @@ const ItemCard: React.FC<ItemCardProps> = ({ item }) => {
                                                 onChange={(e) => setQuestCompletion(req.questId, e.target.checked)}
                                                 className="mr-2"
                                             />
-                                            {req.questName} - {req.quantity}x {req.inRaid ? '(In Raid)' : ''} {req.notes && `(${req.notes})`}
+                                            <a href={req.questUrl} target="_blank" rel="noopener noreferrer" className="text-blue-300 hover:underline">
+                                                {req.questName}
+                                            </a>&nbsp;-&nbsp;{req.quantity}x {req.inRaid ? '(In Raid)' : ''} {req.notes && `(${req.notes})`}
                                         </li>
                                     ))}
                                 </ul>

@@ -32,7 +32,7 @@ async function downloadImage(url: string, filepath: string) {
 async function downloadAllIcons() {
     const downloadDir = process.cwd();
     
-    for (const item of categories.electronics) {
+    for (const item of categories.householdMaterials) {
         const filename = `${item.id}.png`;
         const filepath = join(downloadDir, filename);
         

@@ -22,6 +22,7 @@ export default function Home() {
         <ItemGrid items={categories.electronics} category="Electronics"/>
         <ItemGrid items={categories.energyElements} category="Energy Elements"/>
         <ItemGrid items={categories.flammableMaterials} category="Flammable Materials"/>
+        <ItemGrid items={categories.householdMaterials} category="Household Materials"/>
         <ItemGrid items={categories.infoItems} category="Info Items"/>
         <ItemGrid items={categories.medicalSupplies} category="Medical Supplies"/>
         <ItemGrid items={categories.others} category="Others"/>
@@ -30,7 +31,7 @@ export default function Home() {
         <ItemGrid items={categories.valuables} category="Valuables"/>
       </main>
       <footer className="bg-gray-900 border-t border-red-600 p-4 text-center text-gray-400">
-        <p>© 2025 xAI. Built with ❤️ for Tarkov players.</p>
+        <p>Built with ❤️ for Tarkov players.</p>
       </footer>
     </div>
   );

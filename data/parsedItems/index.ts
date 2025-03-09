@@ -2,6 +2,7 @@ import { buildingMaterials } from "./buildingMaterials";
 import { electronics } from "./electronics";
 import { energyElements } from "./energyElements";
 import { flammableMaterials } from "./flammableMaterials";
+import { householdMaterials } from "./householdMaterials";
 import { infoItems } from "./infoItems";
 import { medicalSupplies } from "./medicalSupplies";
 import { others } from "./others";
@@ -14,6 +15,7 @@ export const categories = {
     electronics,
     energyElements,
     flammableMaterials,
+    householdMaterials,
     infoItems,
     medicalSupplies,
     others,
