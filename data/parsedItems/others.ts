@@ -191,33 +191,17 @@ export const others: Item[] = [
                 questUrl: "https://escapefromtarkov.fandom.com/wiki/The_Punisher_-_Part_6",
                 questId: "The_Punisher_-_Part_6",
                 questName: "The Punisher - Part 6",
-                quantity: 7,
+                quantity: 14,
                 inRaid: false,
-                notes: "USEC dogtags"
-            },
-            {
-                questUrl: "https://escapefromtarkov.fandom.com/wiki/The_Punisher_-_Part_6",
-                questId: "The_Punisher_-_Part_6",
-                questName: "The Punisher - Part 6",
-                quantity: 7,
-                inRaid: false,
-                notes: "BEAR dogtags"
+                notes: "7 USEC dogtags + 7 BEAR dogtags"
             },
             {
                 questUrl: "https://escapefromtarkov.fandom.com/wiki/Trophies",
                 questId: "Trophies",
                 questName: "Trophies",
-                quantity: 20,
+                quantity: 40,
                 inRaid: true,
-                notes: "USEC dogtags (level 50+)"
-            },
-            {
-                questUrl: "https://escapefromtarkov.fandom.com/wiki/Trophies",
-                questId: "Trophies",
-                questName: "Trophies",
-                quantity: 20,
-                inRaid: true,
-                notes: "BEAR dogtags (level 50+)"
+                notes: "20 USEC dogtags (level 50+) + 20 BEAR dogtags (level 50+)"
             },
             {
                 questUrl: "https://escapefromtarkov.fandom.com/wiki/Our_Own_Land",

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Popover, PopoverTrigger, PopoverContent } from '@/components/ui/popover'; // Adjust the import path based on your setup
 import Image from 'next/image';
+import { useStore } from '@/lib/store';
 
 interface Item {
     url: string;
@@ -34,17 +35,18 @@ interface ItemCardProps {
 }
 
 // Function to calculate total items needed
-const calculateTotalNeeded = (item: Item): number => {
-    const questTotal = item.questRequirements.reduce((sum, req) => sum + req.quantity, 0);
-    const hideoutTotal = item.hideoutRequirements.reduce((sum, req) => sum + req.quantity, 0);
+const calculateTotalNeeded = (item: Item, questCompletions: Record<string, boolean>, hideoutModuleCompletions: Record<string, boolean>): number => {
+    const questTotal = item.questRequirements.filter(req => !questCompletions[req.questId] && req.inRaid).reduce((sum, req) => sum + req.quantity, 0);
+    const hideoutTotal = item.hideoutRequirements.filter(req => !hideoutModuleCompletions[req.hideoutModuleId] && req.inRaid).reduce((sum, req) => sum + req.quantity, 0);
     return questTotal + hideoutTotal;
 };
 
 const ItemCard: React.FC<ItemCardProps> = ({ item }) => {
-    const totalNeeded = calculateTotalNeeded(item);
+    const { itemQuantities, questCompletions, hideoutModuleCompletions, setItemQuantity, setQuestCompletion, setHideoutModuleCompletion } = useStore();
+    const totalNeeded = calculateTotalNeeded(item, questCompletions, hideoutModuleCompletions);
 
     return (
-        <div className="inline-block text-center">
+        <div className="flex flex-col items-center">
             <Popover>
                 <PopoverTrigger asChild>
                     <div className="w-16 h-16 bg-gray-800 border-2 border-gray-600 flex items-center justify-center overflow-hidden cursor-pointer">
@@ -54,9 +56,6 @@ const ItemCard: React.FC<ItemCardProps> = ({ item }) => {
                             width={96}
                             height={96}
                             className="w-full h-full object-contain"
-                            onError={(e) => {
-                                (e.target as HTMLImageElement).src = '/fallback-image.png'; // Fallback image if icon fails to load
-                            }}
                         />
 
 
@@ -79,11 +78,15 @@ const ItemCard: React.FC<ItemCardProps> = ({ item }) => {
                             <div className="mt-2">
                                 <p className="font-semibold">Quest Requirements:</p>
                                 <ul className="list-disc pl-4">
-                                    {item.questRequirements.map((req, index) => (
-                                        <li key={index}>
-                                            <a href={req.questUrl} className="text-blue-300 hover:underline">
-                                                {req.questName}
-                                            </a> - {req.quantity}x {req.inRaid ? '(In Raid)' : ''} {req.notes && `(${req.notes})`}
+                                    {item.questRequirements.map((req) => (
+                                        <li key={req.questId} className="flex items-center">
+                                            <input
+                                                type="checkbox"
+                                                checked={questCompletions[req.questId] || false}
+                                                onChange={(e) => setQuestCompletion(req.questId, e.target.checked)}
+                                                className="mr-2"
+                                            />
+                                            {req.questName} - {req.quantity}x {req.inRaid ? '(In Raid)' : ''} {req.notes && `(${req.notes})`}
                                         </li>
                                     ))}
                                 </ul>
@@ -95,8 +98,14 @@ const ItemCard: React.FC<ItemCardProps> = ({ item }) => {
                             <div className="mt-2">
                                 <p className="font-semibold">Hideout Requirements:</p>
                                 <ul className="list-disc pl-4">
-                                    {item.hideoutRequirements.map((req, index) => (
-                                        <li key={index}>
+                                    {item.hideoutRequirements.map((req) => (
+                                        <li key={req.hideoutModuleId} className="flex items-center">
+                                            <input
+                                                type="checkbox"
+                                                checked={hideoutModuleCompletions[req.hideoutModuleId] || false}
+                                                onChange={(e) => setHideoutModuleCompletion(req.hideoutModuleId, e.target.checked)}
+                                                className="mr-2"
+                                            />
                                             {req.hideoutModuleName} - {req.quantity}x {req.inRaid ? '(In Raid)' : ''} {req.notes && `(${req.notes})`}
                                         </li>
                                     ))}
@@ -114,9 +123,28 @@ const ItemCard: React.FC<ItemCardProps> = ({ item }) => {
             </Popover>
 
             {/* Total Needed Display */}
-            <div className="mt-1 text-sm font-medium text-gray-700">
-                0 / {totalNeeded}
-            </div></div>
+            <div className="mt-1 text-sm font-medium text-gray-400"><span className={(itemQuantities[item.id] || 0) >= totalNeeded ? "text-green-400" : ""}>{itemQuantities[item.id] || 0} / {totalNeeded}</span></div>
+            <div className="flex flex-row gap-2">
+                <button
+                    onClick={() => {
+                        const current = useStore.getState().itemQuantities[item.id] || 0;
+                        setItemQuantity(item.id, Math.max(0, current - 1));
+                    }}
+                    className="w-6 h-6 rounded-full bg-gray-700 hover:bg-gray-600 flex items-center justify-center text-sm"
+                >
+                    -
+                </button>
+                <button
+                    onClick={() => {
+                        const current = itemQuantities[item.id] || 0;
+                        setItemQuantity(item.id, current + 1);
+                    }}
+                    className="w-6 h-6 rounded-full bg-gray-700 hover:bg-gray-600 flex items-center justify-center text-sm"
+                >
+                    +
+                </button>
+            </div>
+        </div>
     );
 };
 

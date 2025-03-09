@@ -407,7 +407,7 @@ export const tools: Item[] = [
     },
     {
         url: "https://escapefromtarkov.fandom.com/wiki/Set_of_files_%22Master%22",
-        id: "Set_of_files_%22Master%22",
+        id: "Set_of_files_Master",
         category: "Tools",
         name: "Set of files \"Master\"",
         iconUrl: "https://static.wikia.nocookie.net/escapefromtarkov_gamepedia/images/7/7f/Files_master_icon.png/revision/latest?cb=20250122140937",

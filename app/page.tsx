@@ -12,7 +12,6 @@ export default function Home() {
       <Head>
         <title>EFT Hideout Manager</title>
         <meta name="description" content="Manage Escape from Tarkov hideout modules and item requirements" />
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       <header className="bg-gray-900 border-b border-red-600 p-6 text-center">
         <h1 className="text-4xl font-bold text-red-500">Escape from Tarkov Hideout Manager</h1>
@@ -23,6 +22,12 @@ export default function Home() {
         <ItemGrid items={categories.electronics} category="Electronics"/>
         <ItemGrid items={categories.energyElements} category="Energy Elements"/>
         <ItemGrid items={categories.flammableMaterials} category="Flammable Materials"/>
+        <ItemGrid items={categories.infoItems} category="Info Items"/>
+        <ItemGrid items={categories.medicalSupplies} category="Medical Supplies"/>
+        <ItemGrid items={categories.others} category="Others"/>
+        <ItemGrid items={categories.specialEquipment} category="Special Equipment"/>
+        <ItemGrid items={categories.tools} category="Tools"/>
+        <ItemGrid items={categories.valuables} category="Valuables"/>
       </main>
       <footer className="bg-gray-900 border-t border-red-600 p-4 text-center text-gray-400">
         <p>© 2025 xAI. Built with ❤️ for Tarkov players.</p>

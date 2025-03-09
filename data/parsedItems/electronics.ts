@@ -558,8 +558,8 @@ export const electronics: Item[] = [
             },
             {
                 hideoutModuleUrl: "https://escapefromtarkov.fandom.com/wiki/Hideout#Modules",
-                hideoutModuleId: "Weapon_Rack_level_2",
-                hideoutModuleName: "Weapon Rack level 2",
+                hideoutModuleId: "Weapon_Rack_level_1",
+                hideoutModuleName: "Weapon Rack level 1",
                 quantity: 5,
                 inRaid: true,
                 notes: ""
@@ -759,7 +759,7 @@ export const electronics: Item[] = [
                 hideoutModuleId: "Bitcoin_Farm_level_1",
                 hideoutModuleName: "Bitcoin Farm level 1",
                 quantity: 10,
-                inRaid: true,
+                inRaid: false,
                 notes: "Up to 10 can be installed"
             },
             {
@@ -767,7 +767,7 @@ export const electronics: Item[] = [
                 hideoutModuleId: "Bitcoin_Farm_level_2",
                 hideoutModuleName: "Bitcoin Farm level 2",
                 quantity: 25,
-                inRaid: true,
+                inRaid: false,
                 notes: "Up to 25 can be installed"
             },
             {
@@ -775,7 +775,7 @@ export const electronics: Item[] = [
                 hideoutModuleId: "Bitcoin_Farm_level_3",
                 hideoutModuleName: "Bitcoin Farm level 3",
                 quantity: 50,
-                inRaid: true,
+                inRaid: false,
                 notes: "Up to 50 can be installed"
             }
         ]

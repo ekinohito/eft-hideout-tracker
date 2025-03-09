@@ -304,7 +304,7 @@ export const infoItems: Item[] = [
     },
     {
         url: "https://escapefromtarkov.fandom.com/wiki/TerraGroup_%22Blue_Folders%22_materials",
-        id: "TerraGroup_%22Blue_Folders%22_materials",
+        id: "TerraGroup_Blue_Folders_materials",
         category: "Info items",
         name: "TerraGroup \"Blue Folders\" materials",
         iconUrl: "https://static.wikia.nocookie.net/escapefromtarkov_gamepedia/images/4/43/Blue_Folders_materials_icon.png/revision/latest?cb=20221231183616",
@@ -346,7 +346,7 @@ export const infoItems: Item[] = [
     },
     {
         url: "https://escapefromtarkov.fandom.com/wiki/Video_cassette_with_the_movie_Cyborg_Killer_from_%22Prokhodimec%22",
-        id: "Video_cassette_with_the_movie_Cyborg_Killer_from_%22Prokhodimec%22",
+        id: "Video_cassette_with_the_movie_Cyborg_Killer_from_Prokhodimec",
         category: "Info items",
         name: "Video cassette with the movie Cyborg Killer from \"Prokhodimec\"",
         iconUrl: "https://static.wikia.nocookie.net/escapefromtarkov_gamepedia/images/a/a5/Video_cassette_with_the_Cyborg_Killer_movie_icon.png/revision/latest?cb=20240310014051",
