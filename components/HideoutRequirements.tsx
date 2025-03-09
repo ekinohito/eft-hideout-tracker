@@ -1,11 +1,10 @@
 // components/HideoutRequirements.tsx
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { hideoutModules } from "../data/hideoutModules";
 import { calculateItemNeeds } from "../utils/calculateItemNeeds";
 import { barterItemCategories, BarterCategory } from "../data/barterItemCategories";
-import Image from "next/image";
 
 interface ItemNeed {
   id: string;
@@ -19,8 +18,28 @@ interface HideoutRequirementsProps {
 export default function HideoutRequirements({
   completedLevels,
 }: HideoutRequirementsProps) {
-  // State to track owned items, typed as a record of item IDs to numbers
-  const [ownedItems, setOwnedItems] = useState<Record<string, number>>({});
+  // Load ownedItems from localStorage or initialize with defaults
+  const [ownedItems, setOwnedItems] = useState<Record<string, number>>(() => {
+    const saved = localStorage.getItem('ownedItems');
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        // Validate the parsed data to ensure it matches the expected structure
+        if (Object.keys(parsed).every(key => typeof parsed[key] === 'number' && parsed[key] >= 0)) {
+          return parsed;
+        }
+      } catch (e) {
+        console.error('Failed to parse ownedItems from localStorage:', e);
+      }
+    }
+    // Default: no items owned
+    return {};
+  });
+
+  // Save ownedItems to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem('ownedItems', JSON.stringify(ownedItems));
+  }, [ownedItems]);
 
   // Calculate item needs based on completed levels and hideoutModules
   const itemNeeds = calculateItemNeeds(completedLevels, hideoutModules);
@@ -94,7 +113,8 @@ export default function HideoutRequirements({
 
                   {/* Replace placeholder with <img> and fallback to letter on error */}
                   <div className="w-20 h-20 flex items-center justify-center mx-auto mb-2">
-                    <Image
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
                       src={`/icons/${item.id}.png`} // Assuming images are in public/icons/
                       alt={`${item.id.replace(/_/g, " ")} Icon`}
                       className="w-20 h-20 object-contain"

@@ -2,15 +2,34 @@
 "use client";
 
 import Head from "next/head";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import AllModulesComponent from "../components/AllModulesComponent";
 import HideoutRequirements from "../components/HideoutRequirements";
 import { moduleLevelsMap } from "../data/moduleLevelsMap";
 
 export default function Home() {
-  const [completedLevels, setCompletedLevels] = useState<Record<string, number>>(
-    Object.fromEntries(Object.keys(moduleLevelsMap).map((module) => [module, 0]))
-  );
+  // Load completedLevels from localStorage or initialize with defaults
+  const [completedLevels, setCompletedLevels] = useState<Record<string, number>>(() => {
+    const saved = localStorage.getItem('completedLevels');
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        // Validate the parsed data to ensure it matches the expected structure
+        if (Object.keys(parsed).every(key => typeof parsed[key] === 'number' && parsed[key] >= 0)) {
+          return parsed;
+        }
+      } catch (e) {
+        console.error('Failed to parse completedLevels from localStorage:', e);
+      }
+    }
+    // Default: all modules start with 0 completed levels
+    return Object.fromEntries(Object.keys(moduleLevelsMap).map((module) => [module, 0]));
+  });
+
+  // Save completedLevels to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem('completedLevels', JSON.stringify(completedLevels));
+  }, [completedLevels]);
 
   return (
     <div className="min-h-screen bg-black text-white flex flex-col">
