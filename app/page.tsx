@@ -18,17 +18,19 @@ export default function Home() {
         <p className="text-gray-300 mt-2">Track modules and item needs for your hideout</p>
       </header>
       <main className="flex-1 flex flex-col">
-        <ItemGrid items={categories.buildingMaterials} category="Building Materials"/>
-        <ItemGrid items={categories.electronics} category="Electronics"/>
-        <ItemGrid items={categories.energyElements} category="Energy Elements"/>
-        <ItemGrid items={categories.flammableMaterials} category="Flammable Materials"/>
-        <ItemGrid items={categories.householdMaterials} category="Household Materials"/>
-        <ItemGrid items={categories.infoItems} category="Info Items"/>
-        <ItemGrid items={categories.medicalSupplies} category="Medical Supplies"/>
-        <ItemGrid items={categories.others} category="Others"/>
-        <ItemGrid items={categories.specialEquipment} category="Special Equipment"/>
-        <ItemGrid items={categories.tools} category="Tools"/>
-        <ItemGrid items={categories.valuables} category="Valuables"/>
+        <div className="max-w-3xl mx-auto">
+          <ItemGrid items={categories.buildingMaterials} category="Building Materials" />
+          <ItemGrid items={categories.electronics} category="Electronics" />
+          <ItemGrid items={categories.energyElements} category="Energy Elements" />
+          <ItemGrid items={categories.flammableMaterials} category="Flammable Materials" />
+          <ItemGrid items={categories.householdMaterials} category="Household Materials" />
+          <ItemGrid items={categories.infoItems} category="Info Items" />
+          <ItemGrid items={categories.medicalSupplies} category="Medical Supplies" />
+          <ItemGrid items={categories.others} category="Others" />
+          <ItemGrid items={categories.specialEquipment} category="Special Equipment" />
+          <ItemGrid items={categories.tools} category="Tools" />
+          <ItemGrid items={categories.valuables} category="Valuables" />
+        </div>
       </main>
       <footer className="bg-gray-900 border-t border-red-600 p-4 text-center text-gray-400">
         <p>Built with ❤️ for Tarkov players.</p>
