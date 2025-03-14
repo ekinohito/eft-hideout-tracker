@@ -1,7 +1,7 @@
 import React from 'react';
 import { Popover, PopoverTrigger, PopoverContent } from '@/components/ui/popover'; // Adjust the import path based on your setup
 import Image from 'next/image';
-import { useStore } from '@/lib/store';
+import { useCalculateTotalNeeded, useStore } from '@/lib/store';
 
 interface Item {
     url: string;
@@ -34,16 +34,13 @@ interface ItemCardProps {
     item: Item;
 }
 
-// Function to calculate total items needed
-const calculateTotalNeeded = (item: Item, questCompletions: Record<string, boolean>, hideoutModuleCompletions: Record<string, boolean>): number => {
-    const questTotal = item.questRequirements.filter(req => !questCompletions[req.questId] && req.inRaid).reduce((sum, req) => sum + req.quantity, 0);
-    const hideoutTotal = item.hideoutRequirements.filter(req => !hideoutModuleCompletions[req.hideoutModuleId] && req.inRaid).reduce((sum, req) => sum + req.quantity, 0);
-    return questTotal + hideoutTotal;
-};
-
 const ItemCard: React.FC<ItemCardProps> = ({ item }) => {
     const { itemQuantities, questCompletions, hideoutModuleCompletions, setItemQuantity, setQuestCompletion, setHideoutModuleCompletion } = useStore();
-    const totalNeeded = calculateTotalNeeded(item, questCompletions, hideoutModuleCompletions);
+    const totalNeeded = useCalculateTotalNeeded(item);
+
+    if (totalNeeded === null) {
+        return null
+    }
 
     return (
         <div className="flex flex-col items-center">

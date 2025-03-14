@@ -2,6 +2,7 @@
 "use client";
 
 import Head from "next/head";
+import { ConfigToggles } from "@/components/ConfigToggles";
 import { categories } from "@/data/parsedItems";
 import ItemGrid from "@/components/ItemGrid";
 
@@ -31,6 +32,7 @@ export default function Home() {
           <ItemGrid items={categories.tools} category="Tools" />
           <ItemGrid items={categories.valuables} category="Valuables" />
         </div>
+        <ConfigToggles />
       </main>
       <footer className="bg-gray-900 border-t border-red-600 p-4 text-center text-gray-400">
         <p>Built with ❤️ for Tarkov players.</p>
