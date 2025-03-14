@@ -76,7 +76,7 @@ export const useCalculateTotalNeeded = (item: Item) => {
   const total = questTotal + hideoutTotal
 
   // Check if we should return null based on displayFound and item quantity
-  if (displayFound && (itemQuantities[item.id] || 0) >= total) {
+  if (!displayFound && (itemQuantities[item.id] || 0) >= total) {
     return null;
   }
 

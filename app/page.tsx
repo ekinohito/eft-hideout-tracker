@@ -31,6 +31,7 @@ export default function Home() {
           <ItemGrid items={categories.specialEquipment} category="Special Equipment" />
           <ItemGrid items={categories.tools} category="Tools" />
           <ItemGrid items={categories.valuables} category="Valuables" />
+          <ItemGrid items={categories.provisions} category="Provisions" />
         </div>
         <ConfigToggles />
       </main>

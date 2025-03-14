@@ -6,6 +6,7 @@ import { householdMaterials } from "./householdMaterials";
 import { infoItems } from "./infoItems";
 import { medicalSupplies } from "./medicalSupplies";
 import { others } from "./others";
+import { provisions } from "./provisions";
 import { specialEquipment } from "./specialEquipment";
 import { tools } from "./tools";
 import { valuables } from "./valuables";
@@ -22,6 +23,7 @@ export const categories = {
     specialEquipment,
     tools,
     valuables,
+    provisions,
 }
 
 export type { Item } from "./types"
