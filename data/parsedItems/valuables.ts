@@ -464,7 +464,7 @@ export const valuables: Item[] = [
         hideoutRequirements: [
             {
                 hideoutModuleUrl: "https://escapefromtarkov.fandom.com/wiki/Hideout#Modules",
-                hideoutModuleId: "Scav_case",
+                hideoutModuleId: "Scav_Case",
                 hideoutModuleName: "Scav case",
                 quantity: 1,
                 inRaid: true,

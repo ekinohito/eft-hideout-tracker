@@ -26,4 +26,6 @@ export const categories = {
     provisions,
 }
 
+export const allItems = Object.values(categories).flat()
+
 export type { Item } from "./types"

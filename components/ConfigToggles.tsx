@@ -9,9 +9,8 @@ export function ConfigToggles() {
 
   return (
     <TooltipProvider>
-      <div className="sticky self-start bottom-10 left-10 z-50 mb-4">
+      <div className="sticky self-start bottom-10 left-10 z-50 mb-4 bg-gray-900 p-1 rounded-md shadow-md shadow-black">
         <ToggleGroup
-          variant={"outline"}
           type="multiple"
           value={[
             config.displayTasks ? "Q" : "",
