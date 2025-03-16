@@ -1,6 +1,8 @@
 // app/page.tsx
 "use client";
 
+import { saveAs } from 'file-saver';
+import { useStore } from '@/lib/store';
 import Head from "next/head";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ConfigToggles } from "@/components/ConfigToggles";
@@ -29,13 +31,11 @@ export default function Home() {
             <TabsTrigger value="items" className="text-red-500">Items</TabsTrigger>
             <TabsTrigger value="quests" className="text-red-500">Quests</TabsTrigger>
             <TabsTrigger value="modules" className="text-red-500">Modules</TabsTrigger>
+            <TabsTrigger value="export" className="text-red-500">Export</TabsTrigger>
           </TabsList>
           
           <TabsContent value="items" className="flex flex-col">
             <div className="max-w-3xl mx-auto flex flex-col">
-              <ItemGrid items={categories.buildingMaterials} category="Building Materials" />
-              <ItemGrid items={categories.electronics} category="Electronics" />
-              <ItemGrid items={categories.energyElements} category="Energy Elements" />
               <ItemGrid items={categories.flammableMaterials} category="Flammable Materials" />
               <ItemGrid items={categories.householdMaterials} category="Household Materials" />
               <ItemGrid items={categories.infoItems} category="Info Items" />
@@ -55,6 +55,48 @@ export default function Home() {
           
           <TabsContent value="modules" className="max-w-3xl mx-auto">
             <HideoutRequirementsList hideoutModules={hideoutModules}/>
+          </TabsContent>
+          
+          <TabsContent value="export" className="max-w-3xl mx-auto flex flex-col items-center gap-4 py-8">
+            <button 
+              className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded transition-colors"
+              onClick={() => {
+                const state = useStore.getState();
+                const blob = new Blob([JSON.stringify(state, null, 2)], {
+                  type: 'application/json;charset=utf-8'
+                });
+                saveAs(blob, 'hideout-state.json');
+              }}
+            >
+              Save
+            </button>
+            <button 
+              className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded transition-colors"
+              onClick={() => {
+                const input = document.createElement('input');
+                input.type = 'file';
+                input.accept = 'application/json';
+                input.onchange = (e) => {
+                  const file = (e.target as HTMLInputElement).files?.[0];
+                  if (file) {
+                    const reader = new FileReader();
+                    reader.onload = (event) => {
+                      try {
+                        const state = JSON.parse(event.target?.result as string);
+                        useStore.setState(state);
+                      } catch (error) {
+                        console.error('Error parsing JSON file:', error);
+                        alert('Invalid JSON file');
+                      }
+                    };
+                    reader.readAsText(file);
+                  }
+                };
+                input.click();
+              }}
+            >
+              Load
+            </button>
           </TabsContent>
         </Tabs>
       </main>
