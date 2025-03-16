@@ -18,6 +18,7 @@ interface ItemState {
   setQuestCompletion: (id: string, isCompleted: boolean) => void;
   setHideoutModuleCompletion: (id: string, isCompleted: boolean) => void;
   setConfig: (config: Partial<ConfigState>) => void;
+  reset: () => void;
 }
 
 export const useStore = create(
@@ -47,6 +48,17 @@ export const useStore = create(
         set((state) => ({
           config: { ...state.config, ...config },
         })),
+      reset: () =>
+        set({
+          itemQuantities: {},
+          questCompletions: {},
+          hideoutModuleCompletions: {},
+          config: {
+            displayTasks: true,
+            displayHideout: true,
+            displayFound: true
+          }
+        }),
     }),
     {
       name: 'tarkov-hideout-storage', // Name of the localStorage key
