@@ -35,6 +35,9 @@ export default function Home() {
 
           <TabsContent value="items" className="flex flex-col">
             <div className="max-w-3xl mx-auto flex flex-col">
+              <ItemGrid items={categories.buildingMaterials} category="Building Materials" />
+              <ItemGrid items={categories.electronics} category="Electronics" />
+              <ItemGrid items={categories.energyElements} category="Energy Elements" />
               <ItemGrid items={categories.flammableMaterials} category="Flammable Materials" />
               <ItemGrid items={categories.householdMaterials} category="Household Materials" />
               <ItemGrid items={categories.infoItems} category="Info Items" />
