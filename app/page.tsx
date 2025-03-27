@@ -34,7 +34,7 @@ export default function Home() {
           </TabsList>
 
           <TabsContent value="items" className="flex flex-col">
-            <div className="max-w-3xl mx-auto flex flex-col">
+            <div className="container px-10 mx-auto flex flex-col">
               <ItemGrid items={categories.buildingMaterials} category="Building Materials" />
               <ItemGrid items={categories.electronics} category="Electronics" />
               <ItemGrid items={categories.energyElements} category="Energy Elements" />

@@ -2,6 +2,7 @@ import React from 'react';
 import { Popover, PopoverTrigger, PopoverContent } from '@/components/ui/popover'; // Adjust the import path based on your setup
 import Image from 'next/image';
 import { useCalculateTotalNeeded, useStore } from '@/lib/store';
+import { Button } from './ui/button';
 
 interface Item {
     url: string;
@@ -123,25 +124,25 @@ const ItemCard: React.FC<ItemCardProps> = ({ item }) => {
 
             {/* Total Needed Display */}
             <div className="mt-1 text-sm font-medium text-gray-400"><span className={(itemQuantities[item.id] || 0) >= totalNeeded ? "text-green-400" : ""}>{itemQuantities[item.id] || 0} / {totalNeeded}</span></div>
-            <div className="flex flex-row gap-2">
-                <button
+            <div className="flex flex-row gap-2 text-white">
+                <Button
                     onClick={() => {
                         const current = useStore.getState().itemQuantities[item.id] || 0;
                         setItemQuantity(item.id, Math.max(0, current - 1));
                     }}
-                    className="w-6 h-6 rounded-full bg-gray-700 hover:bg-gray-600 flex items-center justify-center text-sm"
+                    className="w-6 h-6 p-0 rounded-full bg-gray-700 hover:bg-gray-600 text-sm"
                 >
                     -
-                </button>
-                <button
+                </Button>
+                <Button
                     onClick={() => {
                         const current = itemQuantities[item.id] || 0;
                         setItemQuantity(item.id, current + 1);
                     }}
-                    className="w-6 h-6 rounded-full bg-gray-700 hover:bg-gray-600 flex items-center justify-center text-sm"
+                    className="w-6 h-6 p-0 rounded-full bg-gray-700 hover:bg-gray-600 text-sm"
                 >
                     +
-                </button>
+                </Button>
             </div>
         </div>
     );
